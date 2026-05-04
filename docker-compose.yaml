@@ -1,0 +1,13 @@
+services:
+  php:
+    container_name: www
+    build: ./
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./html:/var/www/html/
+      - ./password:/var/www/password/
+      - ./mycert.crt:/etc/ssl/certs/mycert.crt
+      - ./mycert.key:/etc/ssl/private/mycert.key
+
