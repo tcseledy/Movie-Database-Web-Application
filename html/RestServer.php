@@ -1,4 +1,4 @@
-l<?php
+<?php
 class RestServer {
   public $global_method;
   public $serviceClass;
