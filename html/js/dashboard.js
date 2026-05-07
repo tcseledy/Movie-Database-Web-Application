@@ -1,47 +1,53 @@
 $(document).ready(function () {
-
     $("#searchBtn").click(function () {
+        let movieTitle = $("#movieInput").val().trim();
 
-        let movieTitle = $("#movieInput").val();
-
-        if (movieTitle.trim() === "") {
+        if (movieTitle === "") {
             $("#statusMessage").text("Please enter a movie title.");
             return;
         }
 
         $("#statusMessage").text("Searching...");
+        $("#resultsSection").addClass("d-none");
 
         $.ajax({
-            url: "RestServer.php",
+            url: "final.php/searchMovie",
             method: "GET",
-            data: {
-                action: "searchMovie",
-                query: movieTitle
-            }
+            dataType: "text",
+            data: { query: movieTitle }
         })
         .done(function (data) {
+            try {
+                let text = String(data).trim();
 
-            let movie = JSON.parse(data);
+                if (text.charAt(0) === "1") {
+                    text = text.substring(1);
+                }
 
-            $("#movieTitle").text(movie.title);
-            $("#movieRelease").text(movie.release_date);
-            $("#movieRating").text(movie.vote_average);
-            $("#movieOverview").text(movie.overview);
+                let movie = JSON.parse(text);
 
-            if (movie.poster_path) {
-                $("#moviePoster").attr(
-                    "src",
-                    "https://image.tmdb.org/t/p/w500" + movie.poster_path
-                );
+                if (movie.error) {
+                    $("#statusMessage").text(movie.error);
+                    return;
+                }
+
+                $("#movieTitle").text(movie.title || movie.original_title || "");
+                $("#movieRelease").text(movie.release_date || "");
+                $("#movieRating").text(movie.vote_average || "");
+                $("#movieOverview").text(movie.overview || "");
+
+                if (movie.poster_path) {
+                    $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w500" + movie.poster_path);
+                }
+
+                $("#resultsSection").removeClass("d-none");
+                $("#statusMessage").text("Movie loaded successfully.");
+            } catch (e) {
+                $("#statusMessage").text("Parse error: " + e.message + " | " + String(data).slice(0, 100));
             }
-
-            $("#resultsSection").removeClass("d-none");
-            $("#statusMessage").text("Movie loaded successfully.");
         })
-        .fail(function () {
-            $("#statusMessage").text("Search failed. Check your API or PHP.");
+        .fail(function (xhr) {
+            $("#statusMessage").text("Request failed: " + xhr.status + " " + xhr.responseText);
         });
-
     });
-
 });

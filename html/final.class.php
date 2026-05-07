@@ -211,4 +211,67 @@ public static function clearLog()
 
     return $retData;
 }
+public static function searchMovie($query)
+{
+    $tmdbToken = getenv("TMDB_TOKEN");
+
+    if (!$tmdbToken) {
+    return ["error" => "No movie found"];
+
+    }
+
+    $requestUrl = "https://api.themoviedb.org/3/search/movie?query=" . urlencode($query);
+
+    $ch = curl_init($requestUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "Authorization: Bearer " . $tmdbToken,
+        "accept: application/json"
+    ]);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    $data = json_decode($response, true);
+
+    if (!$data || empty($data["results"])) {
+        return ["error" => "No movie found"];
+    }
+
+	if (!$data || empty($data["results"])) {
+    	return ["error" => "No movie found"];
+	}
+
+	$movie = $data["results"][0];
+
+	$db = new PDO("sqlite:cse383.db");
+	$stmt = $db->prepare(
+    	"INSERT INTO searches (search_term, request_json, response_json) VALUES (?, ?, ?)"
+	);
+	$stmt->execute([
+    	$query,
+    	json_encode(["query" => $query]),
+    	json_encode($movie)
+	]);
+
+	return $movie;
+
+
+}
+
+public static function getHistory()
+{
+    return GET_SQL("SELECT id, search_term, timestamp FROM searches ORDER BY timestamp DESC");
+}
+
+public static function getSearchById($id)
+{
+    $rows = GET_SQL("SELECT response_json FROM searches WHERE id = ?", $id);
+
+    if (count($rows) < 1) {
+        return json_decode($rows[0]["response_json"], true);
+    }
+
+    return json_decode($rows[0]["response_json"], true);
+}
 }

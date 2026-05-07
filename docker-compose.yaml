@@ -2,6 +2,8 @@ services:
   php:
     container_name: www
     build: ./
+    environment:
+    - TMDB_TOKEN=${TMDB_TOKEN}
     ports:
       - 80:80
       - 443:443
