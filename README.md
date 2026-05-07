@@ -1,93 +1,309 @@
-# cse383a-final-project
+# Movie Dashboard Final Project
 
+## Overview
 
+This project is a Movie Dashboard web application developed for the CSE 383 Final Project. The application allows users to search for movies using the TMDB (The Movie Database) API and save search history using a backend database. The project demonstrates frontend development, REST API usage, backend integration, Docker deployment, and database functionality.
 
-## Getting started
+The application includes:
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+* A homepage/dashboard
+* Movie search functionality
+* Movie history logging
+* API integration with TMDB
+* Docker container deployment
+* Database persistence
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+---
 
-## Add your files
+# Technologies Used
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+## Frontend
 
+* HTML5
+* CSS3
+* JavaScript
+* Bootstrap
+
+## Backend
+
+* PHP
+* REST API
+
+## Database
+
+* SQLite
+
+## Deployment
+
+* Docker
+* Docker Compose
+* OpenStack Server
+
+## External API
+
+* TMDB API (The Movie Database)
+
+---
+
+# Features
+
+## Home Page
+
+The homepage provides navigation to the different sections of the Movie Dashboard application.
+
+## Movie Search
+
+Users can search for movies by title. The application sends requests to the TMDB API and dynamically displays movie information including:
+
+* Movie poster
+* Title
+* Release date
+* Rating
+* Overview/description
+
+## Search History
+
+Each movie search is logged into the SQLite database and displayed on the history page.
+
+## REST API Integration
+
+The backend communicates with the TMDB API using PHP and returns structured JSON responses.
+
+## Docker Deployment
+
+The project runs inside Docker containers for consistent deployment and execution.
+
+---
+
+# Project Structure
+
+```text
+project-folder/
+│
+├── html/
+│   ├── index.html
+│   ├── dashboard.html
+│   ├── history.html
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── final.php
+├── final.class.php
+├── RestServer.php
+├── cse383.db
+├── phpliteadmin.php
+├── docker-compose.yml
+├── Dockerfile
+└── README.md
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/cseledtd/cse383a-final-project.git
-git branch -M main
-git push -uf origin main
+
+---
+
+# Installation and Setup
+
+## Clone the Repository
+
+```bash
+git clone <repository-url>
+cd <project-folder>
 ```
 
-## Integrate with your tools
+---
 
-* [Set up project integrations](https://gitlab.com/cseledtd/cse383a-final-project/-/settings/integrations)
+# Docker Setup
 
-## Collaborate with your team
+## Start Containers
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+```bash
+docker compose up -d
+```
 
-## Test and Deploy
+## Stop Containers
 
-Use the built-in continuous integration in GitLab.
+```bash
+docker compose down
+```
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+## Verify Containers
 
-***
+```bash
+docker ps
+```
 
-# Editing this README
+---
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+# Accessing the Application
 
-## Suggestions for a good README
+## Localhost
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Open the browser and navigate to:
 
-## Name
-Choose a self-explaining name for your project.
+```text
+http://localhost:8080/index.html
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## OpenStack Deployment
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Replace YOUR_OPENSTACK_IP with the server IP address:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+```text
+http://YOUR_OPENSTACK_IP/index.html
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+---
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+# Database
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+The project uses SQLite for storing search history.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Database File
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+```text
+cse383.db
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Database Features
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+* Stores search history
+* Stores timestamps
+* Supports retrieval of previous searches
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Database Administration
 
-## License
-For open source projects, say how it is licensed.
+The database can be viewed using:
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+```text
+phpliteadmin.php
+```
+
+---
+
+# API Usage
+
+The application communicates with the TMDB API to retrieve movie information.
+
+## Example Search
+
+Searching for:
+
+```text
+Cars
+```
+
+returns:
+
+* Poster image
+* Rating
+* Release date
+* Movie overview
+
+---
+
+# REST Endpoints
+
+## Search Endpoint
+
+Handles movie searches and API requests.
+
+## History Endpoint
+
+Retrieves previously searched movies from the database.
+
+## Logging Endpoint
+
+Stores search results into the SQLite database.
+
+---
+
+# Screenshots
+
+## Home Page
+
+Displays navigation and dashboard information.
+
+## Search Page
+
+Allows users to search for movies and view results.
+
+## History Page
+
+Displays previously searched movies from the database.
+
+---
+
+# Challenges Encountered
+
+During development several issues were encountered including:
+
+* Docker container configuration
+* PHP parsing errors
+* API request handling
+* Database permissions
+* Routing and REST endpoint debugging
+* Frontend/backend integration
+
+These issues were resolved through debugging, testing, and configuration updates.
+
+---
+
+# Learning Outcomes
+
+This project helped demonstrate:
+
+* REST API integration
+* Docker containerization
+* PHP backend development
+* SQLite database usage
+* Frontend and backend communication
+* JSON handling
+* Web application deployment
+
+---
+
+# How to Run the Project
+
+1. Start Docker containers:
+
+```bash
+docker compose up -d
+```
+
+2. Open browser:
+
+```text
+http://localhost:8080/index.html
+```
+
+3. Search for movies using the search page.
+
+4. View saved searches in the history page.
+
+---
+
+# References
+
+## TMDB API
+
+[https://www.themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
+
+## Docker Documentation
+
+[https://docs.docker.com/](https://docs.docker.com/)
+
+## PHP Documentation
+
+[https://www.php.net/docs.php](https://www.php.net/docs.php)
+
+## SQLite Documentation
+
+[https://www.sqlite.org/docs.html](https://www.sqlite.org/docs.html)
+
+---
+
+# Authors
+
+Theo Cseledy and Griffin Sleyko
+
+CSE 383 Final Project
+Miami University
