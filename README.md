@@ -135,22 +135,17 @@ docker ps
 
 # Accessing the Application
 
-## Localhost
+# OpenStack Access
 
-Open the browser and navigate to:
+The application was deployed on the OpenStack server and accessed using SSH port forwarding.
 
-```text
+SSH tunnel command:
+
+ssh -N -L 8080:172.17.15.104:80 cseledtd@ceclnx01.cec.miamioh.edu
+
+After starting the tunnel, the application can be accessed locally through:
+
 http://localhost:8080/index.html
-```
-
-## OpenStack Deployment
-
-Replace YOUR_OPENSTACK_IP with the server IP address:
-
-```text
-http://YOUR_OPENSTACK_IP/index.html
-```
-
 ---
 
 # Database
