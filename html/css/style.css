@@ -97,3 +97,80 @@ footer {
     text-align: center;
     color: #6c757d;
 }
+
+/* Profile Pages */
+.profile-card {
+    max-width: 950px;
+    margin: 60px auto;
+    padding: 45px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+    text-align: center;
+}
+
+.profile-card h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.profile-card h5 {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 25px;
+}
+
+.profile-card .lead {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    max-width: 780px;
+    margin: 0 auto 30px auto;
+}
+
+.profile-img {
+    width: 220px !important;
+    height: 220px !important;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #0d6efd;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+    display: block;
+    margin: 0 auto 25px auto;
+}
+
+.section-title {
+    color: #0d6efd;
+    font-weight: 800;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.profile-card ul {
+    padding-left: 22px;
+}
+
+.profile-card li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.profile-card .row {
+    margin-top: 25px;
+}
+
+@media (max-width: 768px) {
+    .profile-card {
+        margin: 30px 15px;
+        padding: 25px;
+    }
+
+    .profile-img {
+        width: 170px !important;
+        height: 170px !important;
+    }
+
+    .profile-card h1 {
+        font-size: 2rem;
+    }
+}
