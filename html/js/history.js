@@ -45,21 +45,22 @@ $(document).ready(function () {
 
     $(document).on("click", ".list-group-item", function () {
         let id = $(this).data("id");
+	console.log("clicked history id:", id);
 
-        $.ajax({
-            url: "final.php/getSearchById",
-            method: "GET",
-            dataType: "text",
-            data: { id: id }
-        })
-        .done(function (data) {
+	$.ajax({
+   	 url: "final.php/getSearchById",
+   	 method: "GET",
+   	 dataType: "text",
+   	 data: { id: id }
+	})
+       .done(function (data) {
             let movie = cleanJson(data);
 
             $("#historyTitle").text(movie.title || movie.original_title || "");
             $("#historyRelease").text(movie.release_date || "");
             $("#historyRating").text(movie.vote_average || "");
             $("#historyOverview").text(movie.overview || "");
-
+	   console.log("replay returned:", data);
             if (movie.poster_path) {
                 $("#historyPoster").attr("src", "https://image.tmdb.org/t/p/w500" + movie.poster_path);
             }
@@ -72,3 +73,4 @@ $(document).ready(function () {
         });
     });
 });
+
