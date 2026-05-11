@@ -213,16 +213,7 @@ public static function clearLog()
 }
 public static function searchMovie($query)
 {
-    $tmdbToken = getenv("TMDB_TOKEN");
-
-    if (!$tmdbToken) {
-	$tmdbToken = getenv("TMDB_TOKEN");
-
-	if (!$tmdbToken) {
-    return ["error" => "TMDB token missing"];
-}
-
-    }
+    $tmdbToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkN2NmNTFkZDVkMmFjMmU5NzEzOTU3M2Y5MjFiMmVhZiIsIm5iZiI6MTc3Njk2NDExOC4wNTEsInN1YiI6IjY5ZWE1MjE2YTBkN2NiNDVmMGQ0N2I5MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jFbe0HUOt0bla58Ivs_ZTycUFomtbRc4uf9wDqCRmMA";
 
     $requestUrl = "https://api.themoviedb.org/3/search/movie?query=" . urlencode($query);
 
@@ -237,12 +228,6 @@ public static function searchMovie($query)
     curl_close($ch);
 
     $data = json_decode($response, true);
-
-$tmdbToken = getenv("TMDB_TOKEN");
-
-if (!$tmdbToken) {
-    return ["error" => "TMDB token missing"];
-}
 
 
 $movie = $data["results"][0];
