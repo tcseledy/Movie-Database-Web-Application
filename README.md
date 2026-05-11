@@ -60,6 +60,7 @@ Users can search for movies by title. The application sends requests to the TMDB
 * Release date
 * Rating
 * Overview/description
+* And if possible a trailer
 
 ## Search History
 
