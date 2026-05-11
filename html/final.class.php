@@ -216,7 +216,11 @@ public static function searchMovie($query)
     $tmdbToken = getenv("TMDB_TOKEN");
 
     if (!$tmdbToken) {
-    return ["error" => "No movie found"];
+	$tmdbToken = getenv("TMDB_TOKEN");
+
+	if (!$tmdbToken) {
+    return ["error" => "TMDB token missing"];
+}
 
     }
 
@@ -234,15 +238,38 @@ public static function searchMovie($query)
 
     $data = json_decode($response, true);
 
-    if (!$data || empty($data["results"])) {
-        return ["error" => "No movie found"];
-    }
+$tmdbToken = getenv("TMDB_TOKEN");
 
-	if (!$data || empty($data["results"])) {
-    	return ["error" => "No movie found"];
-	}
+if (!$tmdbToken) {
+    return ["error" => "TMDB token missing"];
+}
 
-	$movie = $data["results"][0];
+
+$movie = $data["results"][0];
+
+/* Get trailer, if available */
+$videosUrl = "https://api.themoviedb.org/3/movie/" . $movie["id"] . "/videos";
+
+$ch = curl_init($videosUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Authorization: Bearer " . $tmdbToken,
+    "accept: application/json"
+]);
+
+$videosResponse = curl_exec($ch);
+curl_close($ch);
+
+$videosData = json_decode($videosResponse, true);
+
+if ($videosData && !empty($videosData["results"])) {
+    foreach ($videosData["results"] as $video) {
+        if ($video["site"] === "YouTube" && $video["type"] === "Trailer") {
+            $movie["trailer_key"] = $video["key"];
+            break;
+        	}
+    	}
+ 	}
 
 	$db = new PDO("sqlite:cse383.db");
 	$stmt = $db->prepare(

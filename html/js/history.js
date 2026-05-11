@@ -60,6 +60,14 @@ $(document).ready(function () {
             $("#historyRelease").text(movie.release_date || "");
             $("#historyRating").text(movie.vote_average || "");
             $("#historyOverview").text(movie.overview || "");
+if (movie.trailer_key) {
+    $("#historyTrailer").attr("src", "https://www.youtube.com/embed/" + movie.trailer_key);
+    $("#historyTrailerSection").removeClass("d-none").show();
+} else {
+    $("#historyTrailer").attr("src", "");
+    $("#historyTrailerSection").addClass("d-none");
+}
+
 	   console.log("replay returned:", data);
             if (movie.poster_path) {
                 $("#historyPoster").attr("src", "https://image.tmdb.org/t/p/w500" + movie.poster_path);

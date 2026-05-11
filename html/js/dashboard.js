@@ -26,6 +26,8 @@ $(document).ready(function () {
 
                 let movie = JSON.parse(text);
 
+	       console.log("MOVIE RESPONSE:", movie);
+
                 if (movie.error) {
                     $("#statusMessage").text(movie.error);
                     return;
@@ -35,6 +37,17 @@ $(document).ready(function () {
                 $("#movieRelease").text(movie.release_date || "");
                 $("#movieRating").text(movie.vote_average || "");
                 $("#movieOverview").text(movie.overview || "");
+
+console.log(movie);
+
+if (movie.trailer_key) {
+    $("#movieTrailer").attr("src", "https://www.youtube.com/embed/" + movie.trailer_key);
+    $("#trailerSection").removeClass("d-none").show();
+} else {
+    $("#movieTrailer").attr("src", "");
+    $("#trailerSection").addClass("d-none");
+}
+
 
                 if (movie.poster_path) {
                     $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w500" + movie.poster_path);
