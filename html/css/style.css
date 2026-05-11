@@ -33,8 +33,15 @@ body {
 }
 
 /* Main Containers */
+
+body > .container {
+    flex: 1;
+}
+
+
 .container {
     max-width: 1100px;
+    flex: 1;
 }
 
 /* Headings */
@@ -87,10 +94,9 @@ img {
 }
 
 footer {
-    margin-top: auto;
+    margin-top: 40px;
     padding: 20px;
     text-align: center;
-
     background-color: #212529;
     color: white;
 }
@@ -127,4 +133,26 @@ footer {
 .profile-card p {
     font-size: 1.05rem;
     line-height: 1.7;
+}
+
+
+/* Dashboard result layout */
+#resultsSection {
+    margin-bottom: 60px;
+}
+
+#resultsSection .row {
+    align-items: flex-start;
+}
+
+#moviePoster {
+    display: block;
+    max-height: 420px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+footer {
+    margin-top: 40px;
 }

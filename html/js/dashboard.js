@@ -38,6 +38,8 @@ $(document).ready(function () {
 
                 if (movie.poster_path) {
                     $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w500" + movie.poster_path);
+                    $("#resultsSection").removeClass("d-none").css("display", "block");
+
                 }
 
                 $("#resultsSection").removeClass("d-none");
