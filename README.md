@@ -193,7 +193,7 @@ returns:
 * Rating
 * Release date
 * Movie overview
-
+* Possible Trailer
 ---
 
 # REST Endpoints
