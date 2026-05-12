@@ -102,34 +102,28 @@ project-folder/
 ---
 
 # Installation and Setup
-
-## Clone the Repository
-
-```bash
-git clone <repository-url>
-cd <project-folder>
-```
-
 ---
+
+# SSH Setup
+
+ssh YOURUSERNAME@ceclnx01.cec.miamioh.edu
+
+ssh ubuntu@YOURIP
 
 # Docker Setup
 
 ## Start Containers
 
-```bash
-docker compose up -d
-```
-
-## Stop Containers
+cd cse383a-final-project/
 
 ```bash
-docker compose down
+sudo docker compose up -d
 ```
 
 ## Verify Containers
 
 ```bash
-docker ps
+sudo docker ps
 ```
 
 ---
