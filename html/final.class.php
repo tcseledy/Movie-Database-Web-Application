@@ -213,7 +213,7 @@ public static function clearLog()
 }
 public static function searchMovie($query)
 {
-    $tmdbToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkN2NmNTFkZDVkMmFjMmU5NzEzOTU3M2Y5MjFiMmVhZiIsIm5iZiI6MTc3Njk2NDExOC4wNTEsInN1YiI6IjY5ZWE1MjE2YTBkN2NiNDVmMGQ0N2I5MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jFbe0HUOt0bla58Ivs_ZTycUFomtbRc4uf9wDqCRmMA";
+    $tmdbToken = "YOUR TMDB TOKEN HERE"
 
     $requestUrl = "https://api.themoviedb.org/3/search/movie?query=" . urlencode($query);
 
